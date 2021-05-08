@@ -1,0 +1,47 @@
+<main class="container">
+    <mat-toolbar  color="primary">
+        <span>Pokémon</span>
+    </mat-toolbar>
+
+    <section class="section">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+            <mat-label>Buscar:</mat-label>
+            <input matInput placeholder="">
+            </mat-form-field>
+        </form>
+
+        <div class="row-cards">
+            <mat-card class="pokemon-card" *ngFor="let pokemon of pokemons">
+                <a class="pokemon-card-link" routerLink="/pokemon/{{pokemon.id}}">
+                    <mat-card-title class="pokemon-card-title">{{ pokemon.name }}</mat-card-title>
+                    
+                    <mat-list class="type-list-items">
+                        <mat-list-item class="type-list-item" *ngFor="let type of pokemon.types">{{ type.type.name }}</mat-list-item>
+                    </mat-list>
+                    
+                    <div class="pokemon-img">
+                        <img [src]="pokemon.sprites.other.dream_world.front_default">
+                    </div>
+                </a>
+
+            </mat-card>
+        </div>
+
+        <mat-paginator [length]="lenPokemons"
+              [pageSize]="20"
+              (page)="onPaginate($event)">
+        </mat-paginator>
+
+        
+
+        <!--<mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let pokemon of pokemons">{{pokemon['name']}}</mat-grid-tile>
+            <mat-grid-tile>2</mat-grid-tile>
+        </mat-grid-list>-->
+
+    </section>
+
+
+    
+</main>

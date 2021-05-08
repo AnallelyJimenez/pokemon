@@ -1,0 +1,58 @@
+<div class="wrapper">
+    <div class="detail-header">
+        <div class="section">
+            <button class="btn-back" mat-button aria-label="Back" routerLink="/">
+                <span class="material-icons">arrow_back</span>
+            </button>
+            <h1 class="pokemon-name"> {{ pokemonDetail.name }} </h1>
+            
+            <mat-list class="elements" *ngFor="let type of pokemonDetail.types">
+                <mat-list-item class="element"> {{ type.type.name }} </mat-list-item>
+            </mat-list>
+            
+            <div class="pokemon-image">
+                <img [src]="pokemonDetail.front_default" alt="">
+            </div>
+        </div>
+    </div>
+    
+    <div class="detail-content">
+        <div class="section">
+            <mat-tab-group mat-align-tabs="center">
+                <mat-tab label="About">
+                    <table class="table-info">
+                        <tr>
+                            <td> Weight </td>
+                            <td> {{pokemonDetail.weight}} </td>
+                        </tr>
+                        <tr>
+                            <td> Height </td>
+                            <td> {{pokemonDetail.height}} </td>
+                        </tr>
+                        <tr>
+                            <td> Abilities </td>
+                            <td>
+                                <span class="ability" *ngFor="let ability of pokemonDetail.abilities">
+                                    {{ability.ability.name}}
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </mat-tab>
+                <mat-tab label="Base stats">
+                    <table class="table-info">
+                        <tr *ngFor="let stat of pokemonDetail.stats">
+                            <td> {{stat.stat.name}} </td>
+                            <td> {{stat.base_stat}} </td>
+                            <td>
+                                <mat-progress-bar class="progress-bar" mode="determinate" [value]="stat.base_stat"></mat-progress-bar>
+                            </td>
+                        </tr>
+                    </table>
+                </mat-tab>
+              </mat-tab-group>
+              
+        </div>
+    </div>
+</div>
+
